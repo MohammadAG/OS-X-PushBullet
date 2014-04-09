@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11010CEA18A64A59004E8E50 /* PushBulletHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 11010CE918A64A59004E8E50 /* PushBulletHandler.m */; };
+		11010CED18A673F4004E8E50 /* PushBulletTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 11010CEC18A673F4004E8E50 /* PushBulletTarget.m */; };
 		1120379518A500A0002B6377 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1120379418A500A0002B6377 /* Cocoa.framework */; };
 		1120379F18A500A0002B6377 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1120379D18A500A0002B6377 /* InfoPlist.strings */; };
 		112037A118A500A0002B6377 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 112037A018A500A0002B6377 /* main.m */; };
 		112037A518A500A0002B6377 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 112037A318A500A0002B6377 /* Credits.rtf */; };
 		112037A818A500A0002B6377 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 112037A718A500A0002B6377 /* AppDelegate.m */; };
 		112037AB18A500A0002B6377 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 112037A918A500A0002B6377 /* MainMenu.xib */; };
-		112037AD18A500A0002B6377 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 112037AC18A500A0002B6377 /* Images.xcassets */; };
 		112037B418A500A0002B6377 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 112037B318A500A0002B6377 /* XCTest.framework */; };
 		112037B518A500A0002B6377 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1120379418A500A0002B6377 /* Cocoa.framework */; };
 		112037BD18A500A0002B6377 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 112037BB18A500A0002B6377 /* InfoPlist.strings */; };
 		112037BF18A500A0002B6377 /* PushbulletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 112037BE18A500A0002B6377 /* PushbulletTests.m */; };
+		11869EC518A6948B0008BFA8 /* PushItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11869EC418A6948B0008BFA8 /* PushItem.m */; };
+		11869ED218A788790008BFA8 /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11869ED118A788790008BFA8 /* icon_512x512@2x.png */; };
+		11ACFD7D18A92D7F00F7D377 /* BorderlessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACFD7C18A92D7F00F7D377 /* BorderlessWindow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11010CE818A64A59004E8E50 /* PushBulletHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushBulletHandler.h; sourceTree = "<group>"; };
+		11010CE918A64A59004E8E50 /* PushBulletHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushBulletHandler.m; sourceTree = "<group>"; };
+		11010CEB18A673F4004E8E50 /* PushBulletTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushBulletTarget.h; sourceTree = "<group>"; };
+		11010CEC18A673F4004E8E50 /* PushBulletTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushBulletTarget.m; sourceTree = "<group>"; };
 		1120379118A500A0002B6377 /* Pushbullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pushbullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1120379418A500A0002B6377 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1120379718A500A0002B6377 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -44,12 +52,17 @@
 		112037A618A500A0002B6377 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		112037A718A500A0002B6377 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		112037AA18A500A0002B6377 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		112037AC18A500A0002B6377 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		112037B218A500A0002B6377 /* PushbulletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PushbulletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		112037B318A500A0002B6377 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		112037BA18A500A0002B6377 /* PushbulletTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PushbulletTests-Info.plist"; sourceTree = "<group>"; };
 		112037BC18A500A0002B6377 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		112037BE18A500A0002B6377 /* PushbulletTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushbulletTests.m; sourceTree = "<group>"; };
+		11869EC318A6948B0008BFA8 /* PushItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushItem.h; sourceTree = "<group>"; };
+		11869EC418A6948B0008BFA8 /* PushItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushItem.m; sourceTree = "<group>"; };
+		11869EC618A6A9A40008BFA8 /* Pushbullet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pushbullet.entitlements; sourceTree = "<group>"; };
+		11869ED118A788790008BFA8 /* icon_512x512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_512x512@2x.png"; sourceTree = "<group>"; };
+		11ACFD7B18A92D7F00F7D377 /* BorderlessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderlessWindow.h; sourceTree = "<group>"; };
+		11ACFD7C18A92D7F00F7D377 /* BorderlessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderlessWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +89,9 @@
 		1120378818A500A0002B6377 = {
 			isa = PBXGroup;
 			children = (
+				11ACFD7B18A92D7F00F7D377 /* BorderlessWindow.h */,
+				11ACFD7C18A92D7F00F7D377 /* BorderlessWindow.m */,
+				11869ED118A788790008BFA8 /* icon_512x512@2x.png */,
 				1120379A18A500A0002B6377 /* Pushbullet */,
 				112037B818A500A0002B6377 /* PushbulletTests */,
 				1120379318A500A0002B6377 /* Frameworks */,
@@ -115,11 +131,17 @@
 		1120379A18A500A0002B6377 /* Pushbullet */ = {
 			isa = PBXGroup;
 			children = (
+				11869EC618A6A9A40008BFA8 /* Pushbullet.entitlements */,
 				112037A618A500A0002B6377 /* AppDelegate.h */,
 				112037A718A500A0002B6377 /* AppDelegate.m */,
 				112037A918A500A0002B6377 /* MainMenu.xib */,
-				112037AC18A500A0002B6377 /* Images.xcassets */,
 				1120379B18A500A0002B6377 /* Supporting Files */,
+				11010CE818A64A59004E8E50 /* PushBulletHandler.h */,
+				11010CE918A64A59004E8E50 /* PushBulletHandler.m */,
+				11010CEB18A673F4004E8E50 /* PushBulletTarget.h */,
+				11010CEC18A673F4004E8E50 /* PushBulletTarget.m */,
+				11869EC318A6948B0008BFA8 /* PushItem.h */,
+				11869EC418A6948B0008BFA8 /* PushItem.m */,
 			);
 			path = Pushbullet;
 			sourceTree = "<group>";
@@ -201,6 +223,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Mohammad Abu-Garbeyyeh";
 				TargetAttributes = {
+					1120379018A500A0002B6377 = {
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
 					112037B118A500A0002B6377 = {
 						TestTargetID = 1120379018A500A0002B6377;
 					};
@@ -230,8 +259,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11869ED218A788790008BFA8 /* icon_512x512@2x.png in Resources */,
 				1120379F18A500A0002B6377 /* InfoPlist.strings in Resources */,
-				112037AD18A500A0002B6377 /* Images.xcassets in Resources */,
 				112037A518A500A0002B6377 /* Credits.rtf in Resources */,
 				112037AB18A500A0002B6377 /* MainMenu.xib in Resources */,
 			);
@@ -252,7 +281,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11010CED18A673F4004E8E50 /* PushBulletTarget.m in Sources */,
+				11869EC518A6948B0008BFA8 /* PushItem.m in Sources */,
+				11010CEA18A64A59004E8E50 /* PushBulletHandler.m in Sources */,
 				112037A818A500A0002B6377 /* AppDelegate.m in Sources */,
+				11ACFD7D18A92D7F00F7D377 /* BorderlessWindow.m in Sources */,
 				112037A118A500A0002B6377 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,7 +415,7 @@
 		112037C318A500A0002B6377 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pushbullet/Pushbullet-Prefix.pch";
@@ -395,7 +428,7 @@
 		112037C418A500A0002B6377 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pushbullet/Pushbullet-Prefix.pch";
@@ -464,6 +497,7 @@
 				112037C418A500A0002B6377 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		112037C518A500A0002B6377 /* Build configuration list for PBXNativeTarget "PushbulletTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +506,7 @@
 				112037C718A500A0002B6377 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

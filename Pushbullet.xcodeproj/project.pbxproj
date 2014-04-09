@@ -61,8 +61,8 @@
 		11869EC418A6948B0008BFA8 /* PushItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushItem.m; sourceTree = "<group>"; };
 		11869EC618A6A9A40008BFA8 /* Pushbullet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pushbullet.entitlements; sourceTree = "<group>"; };
 		11869ED118A788790008BFA8 /* icon_512x512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_512x512@2x.png"; sourceTree = "<group>"; };
-		11ACFD7B18A92D7F00F7D377 /* BorderlessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderlessWindow.h; sourceTree = "<group>"; };
-		11ACFD7C18A92D7F00F7D377 /* BorderlessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderlessWindow.m; sourceTree = "<group>"; };
+		11ACFD7B18A92D7F00F7D377 /* BorderlessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BorderlessWindow.h; path = ../BorderlessWindow.h; sourceTree = "<group>"; };
+		11ACFD7C18A92D7F00F7D377 /* BorderlessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorderlessWindow.m; path = ../BorderlessWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +89,6 @@
 		1120378818A500A0002B6377 = {
 			isa = PBXGroup;
 			children = (
-				11ACFD7B18A92D7F00F7D377 /* BorderlessWindow.h */,
-				11ACFD7C18A92D7F00F7D377 /* BorderlessWindow.m */,
 				11869ED118A788790008BFA8 /* icon_512x512@2x.png */,
 				1120379A18A500A0002B6377 /* Pushbullet */,
 				112037B818A500A0002B6377 /* PushbulletTests */,
@@ -131,6 +129,8 @@
 		1120379A18A500A0002B6377 /* Pushbullet */ = {
 			isa = PBXGroup;
 			children = (
+				11ACFD7B18A92D7F00F7D377 /* BorderlessWindow.h */,
+				11ACFD7C18A92D7F00F7D377 /* BorderlessWindow.m */,
 				11869EC618A6A9A40008BFA8 /* Pushbullet.entitlements */,
 				112037A618A500A0002B6377 /* AppDelegate.h */,
 				112037A718A500A0002B6377 /* AppDelegate.m */,

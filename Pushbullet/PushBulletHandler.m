@@ -51,7 +51,7 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
     
     // Create the request.
     NSMutableURLRequest *theRequest =
-    [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.pushbullet.com/api/devices"]
+    [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.pushbullet.com/v2/devices"]
                             cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     
     NSString *loginString = [NSString stringWithFormat:@"%@:", [self apiKey]];
@@ -65,6 +65,28 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
     if (!self.refreshDevicesConnection) {
         self.refreshReceivedData = nil;
     }
+    
+    [self refreshContacts];
+}
+
+- (void) refreshContacts
+{
+    // Create the request.
+    NSMutableURLRequest *theRequest =
+    [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.pushbullet.com/v2/contacts"]
+                            cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+    NSString *loginString = [NSString stringWithFormat:@"%@:", [self apiKey]];
+    NSString *authString = [@"Basic " stringByAppendingFormat:@"%@", [self encodeString:loginString]];
+    [theRequest setValue:authString forHTTPHeaderField:@"Authorization"];
+    [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    self.contactsReceivedData = [NSMutableData dataWithCapacity: 0];
+    
+    self.contactsRefreshConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    if (!self.contactsRefreshConnection) {
+        self.contactsReceivedData = nil;
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -73,6 +95,8 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
         [self.refreshReceivedData setLength:0];
     else if (connection == self.pushConnection)
         [self.pushReceivedData setLength:0];
+    else if (connection == self.contactsRefreshConnection)
+        [self.contactsReceivedData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -81,6 +105,8 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
         [self.refreshReceivedData appendData:data];
     else if (connection == self.pushConnection)
         [self.pushReceivedData appendData:data];
+    else if (connection == self.contactsRefreshConnection)
+        [self.contactsReceivedData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection
@@ -91,6 +117,8 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
         self.refreshReceivedData = nil;
     else if (connection == self.pushConnection)
         self.pushReceivedData = nil;
+    else if (connection == self.contactsRefreshConnection)
+        self.contactsRefreshConnection = nil;
     
     NSLog(@"Connection failed! Error - %@ %@",
           [error localizedDescription],
@@ -103,6 +131,8 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
         [self refreshConnectionFinished];
     else if (connection == self.pushConnection)
         [self pushConnectionFinished];
+    else if (connection == self.contactsRefreshConnection)
+        [self contactsRefreshConnectionFinished];
 }
 
 - (void) refreshConnectionFinished
@@ -130,12 +160,10 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
         NSLog(@"Got devices dictionary of type %@", [devices className]);
         
         for (NSDictionary *device in devices) {
-            NSDictionary *extras = [device valueForKey:@"extras"];
-            
-            NSString *nickname = [extras objectForKey:@"nickname"];
-            NSString *manufacturer = [extras objectForKey:@"manufacturer"];
-            NSString *model = [extras objectForKey:@"model"];
-            NSString *androidVersion = [extras objectForKey:@"android_version"];
+            NSString *nickname = [device objectForKey:@"nickname"];
+            NSString *manufacturer = [device objectForKey:@"manufacturer"];
+            NSString *model = [device objectForKey:@"model"];
+            NSString *androidVersion = [device objectForKey:@"android_version"];
             NSString *iden = [device valueForKey:@"iden"];
             NSString *deviceType = @"device";
             NSString *androidVersionString = [NSString stringWithFormat:@" running Android version %@ ", androidVersion];
@@ -149,6 +177,7 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
             [target setManufacturer:manufacturer];
             [target setIden:iden];
             [target setModel:model];
+            [target setType:TYPE_DEVICE];
             
             [targets addObject:target];
         }
@@ -163,6 +192,59 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
     if (_delegate && [_delegate respondsToSelector:@selector(targetsRefreshed:targetsDidFinishLoading:)]) {
     	NSLog(@"Delivering results to UI!");
     	[_delegate targetsRefreshed:self targetsDidFinishLoading:targets];
+    } else {
+    	NSLog(@"Delegate not set, refresh finished though");
+    }
+}
+
+- (void) contactsRefreshConnectionFinished
+{
+    NSLog(@"Succeeded! Received %lu bytes of data", (unsigned long)[self.contactsReceivedData length]);
+    
+    NSError *error = nil;
+    id object = [NSJSONSerialization
+                 JSONObjectWithData:_contactsReceivedData
+                 options:0
+                 error:&error];
+    
+    if(error) {
+        NSLog(@"Error parsing JSON");
+        return;
+    }
+    
+    NSMutableArray *targets = [[NSMutableArray alloc] init];
+    
+    if ([object isKindOfClass:[NSDictionary class]])
+    {
+        NSDictionary *results = object;
+        NSArray *contacts = [results objectForKey:@"contacts"];
+        
+        for (NSDictionary *contact in contacts) {
+            NSString *nickname = [contact objectForKey:@"name"];
+            NSString *iden = [contact valueForKey:@"iden"];
+            NSString *email = [contact valueForKey:@"email"];
+            
+            PushBulletTarget *target = [[PushBulletTarget alloc] init];
+            [target setNickname:nickname];
+            [target setManufacturer:@"Contact: "];
+            [target setIden:iden];
+            [target setEmail:email];
+            [target setModel:@""];
+            [target setType:TYPE_CONTACT];
+            
+            [targets addObject:target];
+        }
+    } else {
+        NSLog(@"Error parsing JSON, invalid response");
+        return;
+    }
+    
+    self.contactsRefreshConnection = nil;
+    self.contactsReceivedData = nil;
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(contactsRefreshed:contactsDidFinishLoading:)]) {
+    	NSLog(@"Delivering results to UI!");
+    	[_delegate contactsRefreshed:self contactsDidFinishLoading:targets];
     } else {
     	NSLog(@"Delegate not set, refresh finished though");
     }
@@ -243,7 +325,7 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
     NSLog(@"Pushing to device %@ with iden %@", [target getDisplayName], target.iden);
     NSLog(@"Pushing data with title: %@ and body %@", [item firstValue], [item secondValue]);
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.pushbullet.com/api/pushes"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.pushbullet.com/v2/pushes"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSString *loginString = [NSString stringWithFormat:@"%@:", [self apiKey]];
@@ -259,7 +341,15 @@ static char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
     } else {
         [pushDictionary setObject:item.secondValue forKey:secondDataTitle];
     }
-    [pushDictionary setObject:target.iden forKey:@"device_iden"];
+    
+    switch (target.type) {
+        case TYPE_CONTACT:
+            [pushDictionary setObject:target.email forKey:@"email"];
+            break;
+        case TYPE_DEVICE:
+            [pushDictionary setObject:target.iden forKey:@"device_iden"];
+            break;
+    }
     
     NSData *pushData = [NSJSONSerialization dataWithJSONObject:pushDictionary options:0 error:NULL];
     [request setHTTPBody:pushData];

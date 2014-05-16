@@ -31,6 +31,7 @@
 @property (nonatomic,strong) PushBulletHandler *pushBulletHandler;
 @property (nonatomic,strong) NSMutableArray *pushTypeButtons;
 @property (nonatomic,strong) NSArray *pushTargets;
+@property (nonatomic,strong) NSArray *contactTargets;
 
 @property (nonatomic) NSInteger lastIndexSelected;
 @property (nonatomic) PushType currentPushType;

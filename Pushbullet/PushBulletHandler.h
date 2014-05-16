@@ -23,6 +23,9 @@
 @property (strong) NSMutableData *pushReceivedData;
 @property (strong) NSURLConnection *pushConnection;
 
+@property (strong) NSMutableData *contactsReceivedData;
+@property (strong) NSURLConnection *contactsRefreshConnection;
+
 - (NSString *) encodeString:(NSString *) string;
 
 - (void) pushToDevice:(PushBulletTarget *) target item:(PushItem *)item;
@@ -35,5 +38,6 @@
 
 @protocol PushBulletHandlerDelegate <NSObject>
 - (void)targetsRefreshed:(PushBulletHandler *)pushBulletHandler targetsDidFinishLoading:(NSArray *)targets;
+- (void)contactsRefreshed:(PushBulletHandler *)pushBulletHandler contactsDidFinishLoading:(NSArray *)contacts;
 - (void) pushSucceeded:(BOOL)success error:(NSString *)error;
 @end

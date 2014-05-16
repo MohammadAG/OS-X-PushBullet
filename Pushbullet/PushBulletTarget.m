@@ -11,6 +11,7 @@
 @implementation PushBulletTarget
 
 @synthesize iden = _iden;
+@synthesize email = _email;
 @synthesize nickname = _nickname;
 @synthesize manufacturer = _manufacturer;
 @synthesize model = _model;

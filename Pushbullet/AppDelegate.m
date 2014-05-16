@@ -195,14 +195,41 @@
         }
     }
     
+    for (PushBulletTarget *target in _contactTargets) {
+        if ([target.iden isEqualToString:iden]) {
+            return target;
+        }
+    }
+    
     return nil;
 }
 
 - (void) targetsRefreshed:(PushBulletHandler *)pushBulletHandler targetsDidFinishLoading:(NSArray *)targets
 {
     _pushTargets = targets;
+    
+    [self refreshMenu];
+}
+
+- (void) contactsRefreshed:(PushBulletHandler *)pushBulletHandler contactsDidFinishLoading:(NSArray *)contacts
+{
+    _contactTargets = contacts;
+    
+    [self refreshMenu];
+}
+
+- (NSMenu *) refreshMenu
+{
     NSMenu *menu = [[NSMenu alloc] init];
-    for (PushBulletTarget *target in targets) {
+    for (PushBulletTarget *target in _pushTargets) {
+        NSMenuItem *mi = [[NSMenuItem alloc]
+                          initWithTitle:[target getDisplayName]
+                          action:Nil
+                          keyEquivalent:target.iden];
+        
+        [menu addItem:mi];
+    }
+    for (PushBulletTarget *target in _contactTargets) {
         NSMenuItem *mi = [[NSMenuItem alloc]
                           initWithTitle:[target getDisplayName]
                           action:Nil
@@ -217,6 +244,8 @@
             [self.devicesPopUpButton selectItemAtIndex:self.lastIndexSelected];
         }
     }
+    
+    return menu;
 }
 
 - (void) pushSucceeded:(BOOL) success error:(NSString *)error

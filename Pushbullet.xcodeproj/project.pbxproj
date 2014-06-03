@@ -20,7 +20,6 @@
 		112037BD18A500A0002B6377 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 112037BB18A500A0002B6377 /* InfoPlist.strings */; };
 		112037BF18A500A0002B6377 /* PushbulletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 112037BE18A500A0002B6377 /* PushbulletTests.m */; };
 		11869EC518A6948B0008BFA8 /* PushItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11869EC418A6948B0008BFA8 /* PushItem.m */; };
-		11869ED218A788790008BFA8 /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11869ED118A788790008BFA8 /* icon_512x512@2x.png */; };
 		11ACFD7D18A92D7F00F7D377 /* BorderlessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACFD7C18A92D7F00F7D377 /* BorderlessWindow.m */; };
 		9EDC2069193DE033004B8D3C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EDC2068193DE033004B8D3C /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -61,7 +60,6 @@
 		11869EC318A6948B0008BFA8 /* PushItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushItem.h; sourceTree = "<group>"; };
 		11869EC418A6948B0008BFA8 /* PushItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushItem.m; sourceTree = "<group>"; };
 		11869EC618A6A9A40008BFA8 /* Pushbullet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pushbullet.entitlements; sourceTree = "<group>"; };
-		11869ED118A788790008BFA8 /* icon_512x512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_512x512@2x.png"; sourceTree = "<group>"; };
 		11ACFD7B18A92D7F00F7D377 /* BorderlessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderlessWindow.h; sourceTree = "<group>"; };
 		11ACFD7C18A92D7F00F7D377 /* BorderlessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderlessWindow.m; sourceTree = "<group>"; };
 		9EDC2068193DE033004B8D3C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 		1120378818A500A0002B6377 = {
 			isa = PBXGroup;
 			children = (
-				11869ED118A788790008BFA8 /* icon_512x512@2x.png */,
 				1120379A18A500A0002B6377 /* Pushbullet */,
 				112037B818A500A0002B6377 /* PushbulletTests */,
 				1120379318A500A0002B6377 /* Frameworks */,
@@ -262,7 +259,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11869ED218A788790008BFA8 /* icon_512x512@2x.png in Resources */,
 				9EDC2069193DE033004B8D3C /* Images.xcassets in Resources */,
 				1120379F18A500A0002B6377 /* InfoPlist.strings in Resources */,
 				112037A518A500A0002B6377 /* Credits.rtf in Resources */,
